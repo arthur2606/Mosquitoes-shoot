@@ -3,6 +3,10 @@
 #include <QGraphicsTextItem>
 #include <QFont>
 #include "Enemy.h"
+#include "bouton.h"
+#include <QString>
+#include<QGraphicsView>
+#include<QEvent>
 
 Game::Game(QWidget *parent){
 
@@ -18,8 +22,44 @@ Game::Game(QWidget *parent){
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff); // annule l'affichage de la barre de defilement vertical
     setFixedSize(800,600);
 
-    // creation du joueur
 
+
+}
+void Game::displayMainMenu(){
+
+    // creation du menu
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("MENU"));
+    QFont titleFont("comic sans",50);
+    titleText->setFont(titleFont);
+    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+    int tyPos = 150;
+    titleText->setPos(txPos,tyPos);
+    scene->addItem(titleText);
+
+    // bouton play
+    bouton* playButton = new bouton(QString("Play"));
+    int bxPos = this->width()/2 - playButton->boundingRect().width()/2;
+    int byPos = 275;
+    playButton->setPos(bxPos,byPos);
+    connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
+    scene->addItem(playButton);
+
+    // bouton pour sortir du jeu
+    bouton* quitButton = new bouton(QString("Quit"));
+    int qxPos = this->width()/2 - quitButton->boundingRect().width()/2;
+    int qyPos = 350;
+    quitButton->setPos(qxPos,qyPos);
+    connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(quitButton);
+}
+void Game::start(){
+
+      scene->clear();
+    Score *score;
+    Player *player;
+    Health * health;
+
+    // creation du joueur
     player = new Player();
     player->setRect(0,0,100,100);
     player->setPos(400,500); // placer le joueur au milieu de la scene
@@ -41,6 +81,7 @@ Game::Game(QWidget *parent){
     health->setPos(health->x(),health->y()+25);
     scene->addItem(health);
 
+
     // creation des ennemies
 
     QTimer * timer = new QTimer();
@@ -48,4 +89,6 @@ Game::Game(QWidget *parent){
     timer->start(2000);
 
     show();
+
+
 }
