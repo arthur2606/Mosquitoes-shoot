@@ -7,15 +7,22 @@
 #include "Player.h"
 #include "score.h"
 #include "health.h"
+#include <QObject>
+
+
 
 class Game: public QGraphicsView{
 public:
-    Game(QWidget * parent=0);
+    Game(QWidget * parent=NULL);
 
     QGraphicsScene * scene;
-    Player * player;
-    Score * score;
+    Score *score;
+    Player *player;
     Health * health;
+    void displayMainMenu();
+
+   public slots:
+       void start();
 
 };
 
