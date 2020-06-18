@@ -25,39 +25,10 @@ Game::Game(QWidget *parent){
 
 
 }
-void Game::displayMainMenu(){
 
-    // creation du menu
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("MENU"));
-    QFont titleFont("comic sans",50);
-    titleText->setFont(titleFont);
-    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
-    int tyPos = 150;
-    titleText->setPos(txPos,tyPos);
-    scene->addItem(titleText);
-
-    // bouton play
-    bouton* playButton = new bouton(QString("Play"));
-    int bxPos = this->width()/2 - playButton->boundingRect().width()/2;
-    int byPos = 275;
-    playButton->setPos(bxPos,byPos);
-    connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
-    scene->addItem(playButton);
-
-    // bouton pour sortir du jeu
-    bouton* quitButton = new bouton(QString("Quit"));
-    int qxPos = this->width()/2 - quitButton->boundingRect().width()/2;
-    int qyPos = 350;
-    quitButton->setPos(qxPos,qyPos);
-    connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
-    scene->addItem(quitButton);
-}
 void Game::start(){
 
       scene->clear();
-    Score *score;
-    Player *player;
-    Health * health;
 
     // creation du joueur
     player = new Player();
@@ -88,7 +59,37 @@ void Game::start(){
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
     timer->start(2000);
 
-    show();
 
 
+}
+
+
+
+void Game::displayMainMenu(){
+
+    // creation du menu
+
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("MENU"));
+    QFont titleFont("comic sans",50);
+    titleText->setFont(titleFont);
+    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+    int tyPos = 150;
+    titleText->setPos(txPos,tyPos);
+    scene->addItem(titleText);
+
+    // bouton play
+    bouton* boutonjouer = new bouton(QString("Play"));
+    int bxPos = this->width()/2 - boutonjouer->boundingRect().width()/2;
+    int byPos = 275;
+   boutonjouer->setPos(bxPos,byPos);
+   QObject::connect(boutonjouer,SIGNAL(clicked()),this,SLOT(start()));
+    scene->addItem(boutonjouer);
+
+    // bouton pour sortir du jeu
+    bouton* boutonquitter = new bouton(QString("Quit"));
+    int qxPos = this->width()/2 - boutonquitter->boundingRect().width()/2;
+    int qyPos = 350;
+   boutonquitter->setPos(qxPos,qyPos);
+    connect(boutonquitter,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(boutonquitter);
 }
