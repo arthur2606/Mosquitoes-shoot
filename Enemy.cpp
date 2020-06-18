@@ -2,11 +2,15 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
-#include <stdlib.h> // rand() -> really large int
+#include <stdlib.h>
+#include "game.h"
 
 #include <QDebug>
+extern Game *game;
 Enemy::Enemy(): QObject(), QGraphicsRectItem(){
+
     // Position aleatoire ennemi
+
     int random_number = rand() % 700;
     setPos(random_number,0);
 
@@ -24,6 +28,7 @@ void Enemy::move(){
     // deplacer l'ennemi vers le bas
     setPos(x(),y()+5);
     if (pos().y() + rect().height() < 0){
+        game->health->decrease();
         scene()->removeItem(this);
         delete this;
     }
