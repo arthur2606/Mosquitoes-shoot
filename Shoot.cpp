@@ -3,8 +3,11 @@
 #include <QGraphicsScene>
 #include <QList>
 #include "Enemy.h"
-
 #include <QDebug>
+#include"game.h"
+
+extern Game * game;
+
 Shoot::Shoot(): QObject(), QGraphicsRectItem(){
     // dessiner la balle
     setRect(50,0,5,15);
@@ -24,6 +27,7 @@ void Shoot::move(){
             // retirer les deux de la scene
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
+            game->score->increase();
             // supprimer les deux de la mémoire
             delete colliding_items[i];
             delete this;
