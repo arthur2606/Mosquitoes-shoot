@@ -1,5 +1,5 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BOUTON_H
+#define BOUTON_H
 
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
@@ -14,10 +14,11 @@ public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-signals:
+ signals:
+
     void clicked();
 private:
     QGraphicsTextItem* text;
 };
 
-#endif // BUTTON_H
+#endif // BOUTON_H

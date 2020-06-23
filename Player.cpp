@@ -3,7 +3,7 @@
 #include <QKeyEvent>
 #include "Shoot.h"
 #include "Enemy.h"
-
+#include <QGraphicsPixmapItem>
 #include <QDebug>
 
 void Player::keyPressEvent(QKeyEvent *event){

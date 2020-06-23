@@ -7,7 +7,7 @@ extern Game *game;
 Health::Health(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
     // initialisation de la vie du joueur
-    health = 5;
+    health = 10;
 
     // affichage de la vie du joueur(moustque)
 

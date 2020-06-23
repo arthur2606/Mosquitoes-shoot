@@ -1,16 +1,14 @@
 #include <QApplication>
-#include "game.h"
-
-
+#include"game.h"
+#include <QGraphicsPixmapItem>
 
 Game * game;
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
 
-    game = new Game();
-    game->displayMainMenu();
-   game->show();
-
+        game = new Game();
+        game->displayMainMenu();
+       game->show();
     return a.exec();
 }

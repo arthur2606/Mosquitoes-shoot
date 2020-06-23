@@ -7,8 +7,10 @@
 #include <QString>
 #include<QGraphicsView>
 #include<QEvent>
+#include<iostream>
 
-Game::Game(QWidget *parent){
+
+    Game::Game (QWidget *parent){
 
     // creation de la scene
 
@@ -32,7 +34,12 @@ void Game::start(){
 
     // creation du joueur
     player = new Player();
-    player->setRect(0,0,100,100);
+
+ QPixmap  pl(":/images2/moustique_propre.jpg");
+    player->setPixmap(pl.scaled(100,100,Qt::KeepAspectRatio));
+
+
+
     player->setPos(400,500); // placer le joueur au milieu de la scene
 
     // Mettre notre joueur en vue principale
@@ -82,7 +89,7 @@ void Game::displayMainMenu(){
     int bxPos = this->width()/2 - boutonjouer->boundingRect().width()/2;
     int byPos = 275;
    boutonjouer->setPos(bxPos,byPos);
-   QObject::connect(boutonjouer,SIGNAL(clicked()),this,SLOT(start()));
+   connect(boutonjouer,SIGNAL(clicked()),this,SLOT(start()));
     scene->addItem(boutonjouer);
 
     // bouton pour sortir du jeu

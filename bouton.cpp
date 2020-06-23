@@ -5,20 +5,22 @@
 #include<QEvent>
 
 bouton::bouton(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent){
-    // draw the rect
+
+    // representation d'un bouton
     setRect(0,0,200,50);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::green);
     setBrush(brush);
 
-    // draw the text
+    // presenter le texte
     text = new QGraphicsTextItem(name,this);
     int xPos = rect().width()/2 - text->boundingRect().width()/2;
     int yPos = rect().height()/2 - text->boundingRect().height()/2;
     text->setPos(xPos,yPos);
 
-    // allow responding to hover events
+    // reponse lorsque le curseur passe sur un bouton
+
     setAcceptHoverEvents(true);
 }
 
@@ -27,7 +29,7 @@ void bouton::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 
 void bouton::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
-    // change color to cyan
+    // change la couleur en rouge
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::red);
@@ -35,7 +37,7 @@ void bouton::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
 }
 
 void bouton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
-    // change color to dark cyan
+    // change la couleur en green aprés etre placé au dessu d'un bouton
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::green);

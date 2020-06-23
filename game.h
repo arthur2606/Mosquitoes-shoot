@@ -8,12 +8,14 @@
 #include "score.h"
 #include "health.h"
 #include <QObject>
+#include"game.h"
 
 
 
 class Game: public QGraphicsView{
+    Q_OBJECT
 public:
-    Game(QWidget * parent=NULL);
+    Game(QWidget *parent=0);
 
     QGraphicsScene * scene;
     Score *score;

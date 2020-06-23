@@ -18,4 +18,6 @@ void Score::increase(){
 }
 
 int Score::getScore(){
-    return
+
+    return score;
+}

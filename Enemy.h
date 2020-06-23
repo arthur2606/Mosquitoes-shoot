@@ -1,10 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
-
+#include"game.h"
+#include <QGraphicsPixmapItem>
 #include <QGraphicsRectItem>
 #include <QObject>
 
-class Enemy: public QObject,public QGraphicsRectItem{
+extern Game *game;
+
+class Enemy: public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Enemy();

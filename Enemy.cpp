@@ -7,7 +7,7 @@
 
 #include <QDebug>
 extern Game *game;
-Enemy::Enemy(): QObject(), QGraphicsRectItem(){
+Enemy::Enemy(): QObject(), QGraphicsPixmapItem(){
 
     // Position aleatoire ennemi
 
@@ -15,7 +15,8 @@ Enemy::Enemy(): QObject(), QGraphicsRectItem(){
     setPos(random_number,0);
 
     // dessiner ennemi
-    setRect(0,0,70,70);
+    QPixmap  En(":/images2/moustique_ennemies_2.jpg");
+       setPixmap(En.scaled(100,100,Qt::KeepAspectRatio));
 
     // connecter le temps au mouvement de l'ennemi
     QTimer * timer = new QTimer(this);
@@ -27,7 +28,7 @@ Enemy::Enemy(): QObject(), QGraphicsRectItem(){
 void Enemy::move(){
     // deplacer l'ennemi vers le bas
     setPos(x(),y()+5);
-    if (pos().y() + rect().height() < 0){
+    if (pos().y()>600){
         game->health->decrease();
         scene()->removeItem(this);
         delete this;

@@ -8,9 +8,11 @@
 
 extern Game * game;
 
-Shoot::Shoot(): QObject(), QGraphicsRectItem(){
-    // dessiner la balle
-    setRect(50,0,5,15);
+Shoot::Shoot(): QObject(),QGraphicsPixmapItem(){
+    // placer l'image
+    QPixmap  Sh(":/images2/feu.jpg");
+       setPixmap(Sh.scaled(50,50,Qt::KeepAspectRatio));
+
 
     // connecter le temps pour un mouvement continue de la balle
     QTimer * timer = new QTimer(this);
@@ -37,7 +39,7 @@ void Shoot::move(){
 
     // mouvement de la balle vers le haut
     setPos(x(),y()-10);
-    if (pos().y() + rect().height() < 0){
+    if (pos().y() <0){
         scene()->removeItem(this);
         delete this;
     }

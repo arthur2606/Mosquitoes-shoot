@@ -17,18 +17,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Enemy.cpp \
-    MyRect.cpp \
     Shoot.cpp \
     main.cpp \
-    mainwindow.cpp
+    score.cpp \
+    health.cpp \
+    game.cpp \
+    Player.cpp \
+    bouton.cpp
 
 HEADERS += \
     Enemy.h \
-    MyRect.h \
     Shoot.h \
-    mainwindow.h
+    score.h \
+    health.h \
+    game.h \
+    Player.h \
+    bouton.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS +=
+
+RESOURCES += \
+    images.qrc

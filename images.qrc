@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images2">
+        <file>moustique_ennemies_2.jpg</file>
+        <file>feu.jpg</file>
+        <file>moustique_propre.jpg</file>
+    </qresource>
+</RCC>
