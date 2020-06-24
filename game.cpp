@@ -9,6 +9,7 @@
 #include <QEvent>
 #include <iostream>
 #include <QMediaPlayer>
+#include <QDialogButtonBox>
 
 
     Game::Game (QWidget *parent){
@@ -60,7 +61,7 @@ void Game::start(){
     health->setPos(health->x(),health->y()+25);
     scene->addItem(health);
 
-
+   // game->health->increase();
     // creation des ennemies
 
     QTimer * timer = new QTimer();
@@ -105,4 +106,25 @@ void Game::displayMainMenu(){
    boutonquitter->setPos(qxPos,qyPos);
     connect(boutonquitter,SIGNAL(clicked()),this,SLOT(close()));
     scene->addItem(boutonquitter);
+}
+
+void Game::gameover(){
+
+
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("GAME OVER"));
+    QFont titleFont("comic sans",50);
+    titleText->setFont(titleFont);
+    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+    int tyPos = 150;
+    titleText->setPos(txPos,tyPos);
+    scene->addItem(titleText);
+
+    QTimer * timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(close()));
+
+
+    timer->start(1500);
+
+
+
 }
