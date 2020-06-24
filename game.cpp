@@ -5,9 +5,10 @@
 #include "Enemy.h"
 #include "bouton.h"
 #include <QString>
-#include<QGraphicsView>
-#include<QEvent>
-#include<iostream>
+#include <QGraphicsView>
+#include <QEvent>
+#include <iostream>
+#include <QMediaPlayer>
 
 
     Game::Game (QWidget *parent){
@@ -66,6 +67,11 @@ void Game::start(){
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
     timer->start(2000);
 
+    //  Son de fond
+
+    QMediaPlayer *music = new QMediaPlayer ();
+    music->setMedia(QUrl("qrc:/sounds/Bground.mp3"));
+    music->play();
 
 
 }
