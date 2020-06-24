@@ -8,7 +8,7 @@
 #include "score.h"
 #include "health.h"
 #include <QObject>
-#include"game.h"
+#include "game.h"
 
 
 
@@ -22,6 +22,7 @@ public:
     Player *player;
     Health * health;
     void displayMainMenu();
+    void gameover();
 
    public slots:
        void start();
