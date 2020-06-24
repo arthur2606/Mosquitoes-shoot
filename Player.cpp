@@ -6,6 +6,13 @@
 #include <QGraphicsPixmapItem>
 #include <QDebug>
 
+Player::Player(QGraphicsPixmapItem *parent1): QGraphicsPixmapItem(parent1){
+
+shootsound = new QMediaPlayer();
+shootsound->setMedia(QUrl("qrc:/sounds/shoot.mp3"));
+
+}
+
 void Player::keyPressEvent(QKeyEvent *event){
     if (event->key() == Qt::Key_Left){
         if (pos().x() > 0)
@@ -21,7 +28,15 @@ void Player::keyPressEvent(QKeyEvent *event){
         shoot->setPos(x(),y());
         scene()->addItem(shoot);
 
-          }
+      //   Son de la balle
+        if(shootsound->state() == QMediaPlayer::PlayingState){
+           shootsound->setPosition(0);
+         }
+        else if (shootsound->state() == QMediaPlayer::StoppedState){
+           shootsound->play();
+        }
+    }
+
 }
 
 void Player::spawn(){
